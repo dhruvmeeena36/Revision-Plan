@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhruv's 30-Day Interview Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--surface:#111;--card:#161616;--border:#242424;
+  --text:#e8e8e8;--muted:#555;--muted2:#777;
+  --green:#00d97e;--green-bg:rgba(0,217,126,0.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;padding:2rem 1rem 5rem}
+.wrap{max-width:740px;margin:0 auto}
+
+/* HEADER */
+.hdr{margin-bottom:2.5rem}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem}
+.hdr h1{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.hdr h1 em{font-style:normal;color:var(--green)}
+.hdr-meta{font-size:.7rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;margin-top:.5rem}
+.reset-btn{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap;margin-top:.25rem}
+.reset-btn:hover{color:var(--text);border-color:#444}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.25rem}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center}
+.stat-n{font-size:1.5rem;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace;line-height:1}
+.stat-l{font-size:.62rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* PROGRESS */
+.prog-wrap{margin-bottom:2rem}
+.prog-meta{display:flex;justify-content:space-between;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--muted2);margin-bottom:5px}
+.prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--green);border-radius:2px;transition:width .4s ease}
+
+/* PHASE */
+.phase{margin-bottom:1.75rem}
+.phase-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.phase-pill{font-size:.62rem;font-family:'JetBrains Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 9px;border-radius:999px}
+.phase-range{font-size:.68rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;margin-left:auto}
+.phase-pct{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+
+/* DAY CARD */
+.day{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-bottom:5px;transition:border-color .2s,opacity .2s}
+.day:hover{border-color:#333}
+.day.done{opacity:.38}
+.day.done .chk{background:var(--green);border-color:var(--green)}
+.chk{width:19px;height:19px;border-radius:50%;border:1.5px solid #333;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.chk svg{display:none}
+.day.done .chk svg{display:block}
+.dnum{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:var(--muted);min-width:34px;padding-top:2px;font-weight:500}
+.dbody{flex:1;min-width:0}
+.dtitle{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3}
+.dtopics{font-size:.74rem;color:var(--muted2);line-height:1.65;font-family:'JetBrains Mono',monospace}
+.dtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.tag{font-size:.6rem;padding:2px 8px;border-radius:999px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+
+/* EXPAND */
+.expand-row{display:flex;align-items:center;gap:6px;margin-top:7px}
+.expand-btn{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;transition:color .15s}
+.expand-btn:hover{color:var(--text)}
+.detail{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.detail.open{display:block}
+.detail-label{font-size:.6rem;font-family:'JetBrains Mono',monospace;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-weight:700}
+.detail ul{list-style:none;padding:0}
+.detail ul li{font-size:.72rem;color:var(--muted2);padding:2px 0 2px 12px;position:relative;line-height:1.5;font-family:'JetBrains Mono',monospace}
+.detail ul li::before{content:'›';position:absolute;left:0;color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <h1>30-Day <em>Interview</em><br>Prep Roadmap</h1>
+      <div class="hdr-meta">// Dhruv Meena · IIT Madras · Full Stack + DSA · Click day to mark done</div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ Reset all</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n" id="sn">0</div><div class="stat-l">Done</div></div>
+  <div class="stat"><div class="stat-n">30</div><div class="stat-l">Total</div></div>
+  <div class="stat"><div class="stat-n" id="sp">0%</div><div class="stat-l">Progress</div></div>
+  <div class="stat"><div class="stat-n" id="sr">30</div><div class="stat-l">Remaining</div></div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-meta"><span id="pl">0 / 30 days completed</span><span id="pr">30 days left</span></div>
+  <div class="prog-bar"><div class="prog-fill" id="bar" style="width:0%"></div></div>
+</div>
+
+<div id="rm"></div>
+</div>
+
+<script>
+const PHASES = [
+  {
+    label:"Web Fundamentals",range:"Days 1–2",pill_bg:"rgba(55,138,221,.15)",pill_c:"#5BAEE8",
+    days:[
+      {n:1,title:"Resume breakdown + HTML / CSS",
+       topics:"Read every bullet → prep answer for each · HTML: semantic tags, accessibility, meta, forms · CSS: box model, flexbox, grid, specificity, BEM, responsive design, media queries",
+       tags:[{t:"Resume-first",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"},{t:"Foundation",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"}],
+       detail:{label:"Key questions to be ready for",items:["What is the difference between block, inline, and inline-block?","Explain CSS specificity with an example","How does flexbox differ from CSS Grid?","What is the box model? How does box-sizing affect it?","What is semantic HTML and why does it matter?"]}},
+      {n:2,title:"JavaScript basics + how the web works",
+       topics:"var/let/const · type coercion · == vs === · DOM manipulation · event bubbling vs capturing · HTTP methods · status codes · REST vs GraphQL · CORS · fetch vs axios · what happens when you type google.com",
+       tags:[{t:"JS Basics",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"},{t:"Web Internals",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"}],
+       detail:{label:"Key questions",items:["What is CORS and how do you handle it in Express?","Difference between 401 and 403?","What is the difference between PUT and PATCH?","Explain event delegation in JavaScript","What is the critical rendering path?"]}},
+    ]
+  },
+  {
+    label:"JavaScript Deep Dive",range:"Days 3–4",pill_bg:"rgba(239,159,39,.15)",pill_c:"#F0A830",
+    days:[
+      {n:3,title:"JS internals — closures, scope, hoisting, this",
+       topics:"Event loop + call stack + microtask queue · Closures (write real examples) · Hoisting (var vs let/const vs function) · Prototypal inheritance · this in 4 contexts (global, method, arrow, new) · Temporal dead zone",
+       tags:[{t:"High Weight",bg:"rgba(239,159,39,.12)",c:"#F0A830"},{t:"Internals",bg:"rgba(239,159,39,.12)",c:"#F0A830"}],
+       detail:{label:"Key questions",items:["Write a closure that creates a counter","Explain the event loop with a setTimeout + Promise example","What is the difference between call, apply, and bind?","Why does this behave differently in arrow functions?","What is the prototype chain? How does inheritance work?"]}},
+      {n:4,title:"Async JS + modern patterns",
+       topics:"Promises: .then/.catch/.finally · Promise.all / allSettled / race / any · async/await · error handling in async · Debounce vs Throttle (implement both) · WeakMap/WeakRef · Generators (basics) · Module system (ES modules vs CJS)",
+       tags:[{t:"Async Patterns",bg:"rgba(239,159,39,.12)",c:"#F0A830"},{t:"Frequent Q",bg:"rgba(239,159,39,.12)",c:"#F0A830"}],
+       detail:{label:"Implement these from memory",items:["Write debounce(fn, delay)","Write throttle(fn, limit)","What is the difference between Promise.all and Promise.allSettled?","Explain async/await error handling with try/catch","What happens if you don't await a promise?"]}},
+    ]
+  },
+  {
+    label:"TypeScript + React",range:"Days 5–6",pill_bg:"rgba(127,119,221,.15)",pill_c:"#9F99E8",
+    days:[
+      {n:5,title:"TypeScript — types, generics, utility types",
+       topics:"type vs interface (when to use which) · generics · utility types: Partial, Required, Pick, Omit, Record, Exclude, Extract, ReturnType · enums vs const enums · narrowing + type guards · never type · declaration merging · tsconfig essentials",
+       tags:[{t:"Resume Stack",bg:"rgba(127,119,221,.12)",c:"#9F99E8"},{t:"Caterworld",bg:"rgba(127,119,221,.12)",c:"#9F99E8"}],
+       detail:{label:"Key questions",items:["When would you use type vs interface?","Write a generic function that works with any array","What is the difference between unknown and any?","How do you narrow types in TypeScript?","Explain Pick<T, K> with an example"]}},
+      {n:6,title:"React — hooks, patterns, performance",
+       topics:"useState/useEffect/useRef/useMemo/useCallback/useReducer/useContext · React.memo · key prop + reconciliation + virtual DOM · controlled vs uncontrolled · custom hooks · Context API vs prop drilling · Strict Mode · error boundaries · lazy + Suspense",
+       tags:[{t:"Core React",bg:"rgba(127,119,221,.12)",c:"#9F99E8"},{t:"Performance",bg:"rgba(127,119,221,.12)",c:"#9F99E8"}],
+       detail:{label:"Key questions",items:["What is the difference between useMemo and useCallback?","When does useEffect run? What does the dependency array do?","Why do we need keys in lists?","What is reconciliation? How does React's diffing algorithm work?","Explain the stale closure problem in useEffect"]}},
+    ]
+  },
+  {
+    label:"Next.js",range:"Day 7",pill_bg:"rgba(29,158,117,.15)",pill_c:"#00d97e",
+    days:[
+      {n:7,title:"Next.js — rendering, App Router, optimization",
+       topics:"SSR vs SSG vs ISR vs CSR — when each makes sense · App Router vs Pages Router · Server Components vs Client Components · layout.tsx · middleware · route handlers · Image + Link optimization · how Vercel deploys Next.js · streaming + Suspense in App Router · your HirePrep AI + Caterworld architecture",
+       tags:[{t:"Resume Stack",bg:"rgba(29,158,117,.12)",c:"#00d97e"},{t:"HirePrep + Caterworld",bg:"rgba(29,158,117,.12)",c:"#00d97e"}],
+       detail:{label:"Key questions",items:["What is the difference between getServerSideProps and getStaticProps?","When should you use Server Components vs Client Components?","How does ISR work? What is revalidate?","What is the App Router? How is it different from Pages Router?","How do you handle authentication in Next.js middleware?"]}},
+    ]
+  },
+  {
+    label:"Node.js + Express",range:"Day 8",pill_bg:"rgba(216,90,48,.15)",pill_c:"#E87050",
+    days:[
+      {n:8,title:"Node.js + Express + REST API design",
+       topics:"Node event loop vs browser event loop · streams + buffers · middleware chain (order matters!) · error handling middleware (4 params) · REST best practices · route versioning · input validation (joi/zod) · rate limiting · CORS config · security headers (helmet) · file uploads · your Food Pulse + Flash Sale endpoints",
+       tags:[{t:"Backend Core",bg:"rgba(216,90,48,.12)",c:"#E87050"},{t:"Projects",bg:"rgba(216,90,48,.12)",c:"#E87050"}],
+       detail:{label:"Key questions",items:["What is the difference between Node.js and browser event loop?","How does Express middleware work? What happens if you forget next()?","How do you handle errors in async Express routes?","What is the difference between process.nextTick and setImmediate?","Design a rate limiter middleware from scratch"]}},
+    ]
+  },
+  {
+    label:"Databases",range:"Days 9–10",pill_bg:"rgba(99,153,34,.15)",pill_c:"#80C040",
+    days:[
+      {n:9,title:"MongoDB — aggregation, indexing, Atlas",
+       topics:"Aggregation pipeline: $match $group $sort $lookup $project $unwind · compound indexes (your Food Pulse indexes) · index types (single, compound, text, TTL) · MongoDB Atlas · CRUD performance · Mongoose vs raw driver · schema design (embedding vs referencing) · transactions in MongoDB",
+       tags:[{t:"Food Pulse",bg:"rgba(99,153,34,.12)",c:"#80C040"},{t:"Flash Sale",bg:"rgba(99,153,34,.12)",c:"#80C040"}],
+       detail:{label:"Key questions",items:["When would you embed vs reference documents in MongoDB?","How do compound indexes work? What is index cardinality?","Explain the MongoDB aggregation pipeline with an example","What is the $lookup stage? How is it like a JOIN?","How do you handle transactions in MongoDB?"]}},
+      {n:10,title:"PostgreSQL + SQL + Drizzle ORM",
+       topics:"SQL: INNER/LEFT/RIGHT/FULL joins · GROUP BY / HAVING · subqueries vs CTEs · window functions (ROW_NUMBER, RANK) · indexes in Postgres · EXPLAIN ANALYZE · ACID properties · transactions · Drizzle ORM schema design (HirePrep AI) · N+1 problem + solutions · connection pooling",
+       tags:[{t:"HirePrep AI",bg:"rgba(99,153,34,.12)",c:"#80C040"},{t:"SQL Depth",bg:"rgba(99,153,34,.12)",c:"#80C040"}],
+       detail:{label:"Key questions",items:["What is the N+1 problem and how do you solve it?","Difference between WHERE and HAVING?","What is a CTE? When would you use it over a subquery?","Explain ACID. What does isolation level mean?","What does EXPLAIN ANALYZE tell you?"]}},
+    ]
+  },
+  {
+    label:"Auth + Security",range:"Day 11",pill_bg:"rgba(212,83,126,.15)",pill_c:"#E070A0",
+    days:[
+      {n:11,title:"JWT + OAuth + bcrypt + security patterns",
+       topics:"JWT: header.payload.signature structure · signing (HS256 vs RS256) · access + refresh token flow · JWT vulnerabilities (alg:none attack) · OAuth 2.0 flow step-by-step (Google OAuth in Agewell) · PKCE · bcrypt: how hashing works, why salt, round cost · session vs token auth · HTTPS · OWASP top 10 basics · your RBAC implementation",
+       tags:[{t:"Agewell",bg:"rgba(212,83,126,.12)",c:"#E070A0"},{t:"Auth Deep Dive",bg:"rgba(212,83,126,.12)",c:"#E070A0"}],
+       detail:{label:"Key questions",items:["Where do you store JWT tokens? localStorage vs httpOnly cookie — tradeoffs?","Explain the OAuth 2.0 authorization code flow step by step","What is RBAC? How did you implement it in Agewell?","What happens if a JWT is stolen? How do you mitigate this?","What is bcrypt and why do we salt passwords?"]}},
+    ]
+  },
+  {
+    label:"Redis + Payments + DevOps",range:"Day 12",pill_bg:"rgba(55,138,221,.15)",pill_c:"#5BAEE8",
+    days:[
+      {n:12,title:"Redis + concurrency + Razorpay + CI/CD + Docker",
+       topics:"Redis data structures (String, Hash, List, Set, Sorted Set, Stream) · Lua atomic scripts — why atomic? what race condition they solve in Flash Sale · TTL + cache invalidation strategies · Pub/Sub · Redis vs Memcached · Razorpay webhook: HMAC-SHA256 signature validation · idempotency keys · Docker: image vs container · Dockerfile basics · CI/CD pipeline flow · AWS Elastic Beanstalk vs Vercel",
+       tags:[{t:"Flash Sale",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"},{t:"Agewell",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"},{t:"DevOps",bg:"rgba(55,138,221,.12)",c:"#5BAEE8"}],
+       detail:{label:"Key questions",items:["Why did you use Lua scripts in Flash Sale? What race condition does it prevent?","How does HMAC webhook validation work?","What is cache invalidation? What are the strategies?","What is the difference between Docker image and container?","Explain a CI/CD pipeline you would set up for a Next.js app"]}},
+    ]
+  },
+  {
+    label:"Project Deep Dives",range:"Days 13–15",pill_bg:"rgba(127,119,221,.15)",pill_c:"#9F99E8",
+    days:[
+      {n:13,title:"Flash Sale System — every decision explained",
+       topics:"Architecture overview (draw it) · Why Redis over DB for stock? · Lua script line by line (what exactly does CHECK+DECREMENT do atomically?) · Sorted-set caching logic · Async MongoDB persistence — why async, not sync? · What happens at 10K concurrent requests? · What breaks + how you'd fix it · Stress test methodology",
+       tags:[{t:"Strongest Project",bg:"rgba(127,119,221,.12)",c:"#9F99E8"},{t:"System Design",bg:"rgba(127,119,221,.12)",c:"#9F99E8"}],
+       detail:{label:"Be ready to explain",items:["Draw the request flow from user click to order confirmation","Why is Redis WATCH + MULTI not enough? Why Lua?","What is the async MongoDB write pattern and what are its risks?","How would you scale this to 100K concurrent users?","What monitoring/alerting would you add in production?"]}},
+      {n:14,title:"HirePrep AI — full system walkthrough",
+       topics:"Gemini API: prompt engineering for Q generation · scoring prompt design (0–10 + feedback) · Speech-to-Text: Web Speech API or external? · Neon PostgreSQL + Drizzle ORM schema (tables, relations) · Clerk auth: how session management works · per-user rate limiting implementation · Serverless vs traditional — cold start tradeoffs · Vercel deployment architecture",
+       tags:[{t:"AI Project",bg:"rgba(127,119,221,.12)",c:"#9F99E8"},{t:"Full Stack",bg:"rgba(127,119,221,.12)",c:"#9F99E8"}],
+       detail:{label:"Be ready to explain",items:["Show your Drizzle schema and explain each table","How did you design the scoring prompt to get consistent 0–10 scores?","What happens when Gemini API is slow? How do you handle timeout?","How does per-user rate limiting work with Clerk?","What would you add to make this production-ready at scale?"]}},
+      {n:15,title:"Food Pulse — strengths + honest weaknesses",
+       topics:"Dual auth (Firebase + custom JWT) — why two systems? tradeoffs · Compound indexes on MongoDB: which exact queries do they optimize? · bcrypt rounds: why 10-12? what's the tradeoff? · Client-side pagination — why it won't scale + how to rewrite with cursor-based server-side pagination · date-fns expiry tracking logic · 15+ endpoints: how did you organize them?",
+       tags:[{t:"Self-awareness",bg:"rgba(127,119,221,.12)",c:"#9F99E8"},{t:"Weakness prep",bg:"rgba(127,119,221,.12)",c:"#9F99E8"}],
+       detail:{label:"Be ready to explain",items:["Explain your dual auth approach — was it the right decision?","Which compound index did you create and why?","Walk me through how client-side pagination works and why it fails at scale","How would you rewrite Food Pulse to handle 10K users?","What is your expiry tracking logic? What edge cases does it miss?"]}},
+    ]
+  },
+  {
+    label:"Internship Revision",range:"Day 16",pill_bg:"rgba(239,159,39,.15)",pill_c:"#F0A830",
+    days:[
+      {n:16,title:"All 4 internships — STAR format every bullet",
+       topics:"Agewell: OAuth RBAC — exactly how did you reduce onboarding 40%? · Razorpay webhook security details · Caterworld: real-time updates without reload — how? · i18n implementation details · component architecture decisions · Reveuse: Matplotlib dashboard specifics · Tkinter UI design · Coratia: which regression model? which hyperparams? feature engineering steps",
+       tags:[{t:"HR + Tech",bg:"rgba(239,159,39,.12)",c:"#F0A830"},{t:"STAR Method",bg:"rgba(239,159,39,.12)",c:"#F0A830"}],
+       detail:{label:"STAR prep for each",items:["Agewell S: production app needed auth · T: implement OAuth RBAC · A: how exactly · R: 40% onboarding reduction — how did you measure?","Caterworld: real-time for 50+ caterers — polling? WebSockets? long polling?","Reveuse: what were the 20%+ task completion metrics based on?","Coratia: 89% accuracy — what was baseline? what hyperparams did you tune?"]}},
+    ]
+  },
+  {
+    label:"DSA — Arrays & Strings",range:"Days 17–18",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:17,title:"Arrays — core patterns",
+       topics:"Two pointers (sorted array pair sum, container with most water, 3Sum) · Sliding window (max sum subarray, longest substring without repeat, minimum window substring) · Prefix sums (range sum query, subarray sum equals k) · Kadane's algorithm (max subarray) · Binary search (rotated sorted, search range)",
+       tags:[{t:"LeetCode",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"High Freq",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Two Sum, 3Sum, Container With Most Water","Longest Substring Without Repeating Characters","Minimum Window Substring","Maximum Subarray (Kadane's)","Search in Rotated Sorted Array","Subarray Sum Equals K"]}},
+      {n:18,title:"Strings — patterns + matrix",
+       topics:"Anagram detection · Palindrome (expand around center, Manacher basics) · String sliding window patterns · Valid parentheses variations · Decode string · Longest palindromic substring · Matrix: rotate 90°, set matrix zeroes, spiral order, word search",
+       tags:[{t:"Strings",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Matrix",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Valid Anagram, Group Anagrams","Longest Palindromic Substring","Valid Parentheses, Minimum Remove to Make Valid","Decode String","Rotate Image, Spiral Matrix","Word Search"]}},
+    ]
+  },
+  {
+    label:"DSA — Linked List + Stack + Queue",range:"Day 19",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:19,title:"Linked List + Stack + Queue — full coverage",
+       topics:"LL: reverse (iterative + recursive) · detect cycle (Floyd's) · find middle · merge two sorted · remove Nth from end · palindrome LL · merge K sorted lists · LRU Cache design · Stack: min stack · evaluate expression · daily temperatures · Monotonic stack · Queue: sliding window max · design queue using stacks",
+       tags:[{t:"LinkedList",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Stack/Queue",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Reverse Linked List (iterative + recursive)","Detect Cycle in Linked List (Floyd's)","Merge Two Sorted Lists, Merge K Sorted Lists","LRU Cache","Min Stack, Daily Temperatures","Sliding Window Maximum"]}},
+    ]
+  },
+  {
+    label:"DSA — Trees",range:"Day 20",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:20,title:"Trees — BFS, DFS, BST, Tries",
+       topics:"Tree traversals (inorder/preorder/postorder iterative + recursive) · BFS level order · height + diameter · LCA (lowest common ancestor) · Validate BST · Serialize/deserialize · Path sum variants · Balanced tree check · Binary tree to DLL · Trie: insert/search/startsWith · N-ary trees",
+       tags:[{t:"Trees",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"BST",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Tries",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Binary Tree Level Order Traversal","Diameter of Binary Tree","Lowest Common Ancestor of BST","Validate Binary Search Tree","Serialize and Deserialize Binary Tree","Implement Trie (Prefix Tree)"]}},
+    ]
+  },
+  {
+    label:"DSA — Graphs",range:"Day 21",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:21,title:"Graphs — BFS, DFS, Topo Sort, Dijkstra",
+       topics:"Graph representations (adj list vs matrix) · BFS/DFS on grid (number of islands, flood fill) · Topological sort (Kahn's + DFS) · Cycle detection (directed + undirected) · Union-Find (DSU) with path compression + rank · Dijkstra's shortest path · Bellman-Ford basics · Bipartite check · Strongly connected components",
+       tags:[{t:"Graphs",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Graph Algos",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Number of Islands, Flood Fill","Course Schedule I & II (Topo Sort)","Detect Cycle in Directed Graph","Number of Connected Components (Union-Find)","Shortest Path in Graph (Dijkstra)","Word Ladder"]}},
+    ]
+  },
+  {
+    label:"DSA — Dynamic Programming",range:"Days 22–23",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:22,title:"DP — 1D patterns",
+       topics:"Memoization vs tabulation (top-down vs bottom-up) · Fibonacci variants · House Robber I & II · Jump Game I & II · Coin Change · Minimum Path Sum · Decode Ways · Climbing Stairs · Perfect Squares · Partition Equal Subset Sum (0/1 knapsack)",
+       tags:[{t:"DP 1D",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Knapsack",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["House Robber, House Robber II","Coin Change, Coin Change II","Jump Game, Jump Game II","Partition Equal Subset Sum","Decode Ways","Minimum Cost Climbing Stairs"]}},
+      {n:23,title:"DP — 2D patterns",
+       topics:"Longest Common Subsequence (LCS) · Edit Distance (Levenshtein) · Longest Increasing Subsequence (LIS) · 0/1 Knapsack · Unique Paths · Matrix DP · Palindrome partitioning · Burst Balloons · DP on trees (diameter, max path sum)",
+       tags:[{t:"DP 2D",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"LCS/LIS",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Longest Common Subsequence","Edit Distance","Longest Increasing Subsequence","Unique Paths, Minimum Path Sum","Regular Expression Matching","Longest Palindromic Subsequence"]}},
+    ]
+  },
+  {
+    label:"DSA — Heap + Greedy + Backtracking",range:"Day 24",pill_bg:"rgba(0,217,126,.12)",pill_c:"#00d97e",
+    days:[
+      {n:24,title:"Heap + Greedy + Backtracking",
+       topics:"Heap: top-K elements · Kth largest · merge K sorted · task scheduler · find median from data stream · Greedy: interval scheduling (meeting rooms) · jump game · gas station · Backtracking: subsets · combinations · permutations · N-Queens · Sudoku solver · word search · palindrome partitioning",
+       tags:[{t:"Heap",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Greedy",bg:"rgba(0,217,126,.08)",c:"#00d97e"},{t:"Backtracking",bg:"rgba(0,217,126,.08)",c:"#00d97e"}],
+       detail:{label:"Must-solve problems",items:["Top K Frequent Elements, Kth Largest in Array","Find Median from Data Stream","Meeting Rooms II (Greedy)","Subsets, Combinations, Permutations","N-Queens, Sudoku Solver","Combination Sum"]}},
+    ]
+  },
+  {
+    label:"OOP + System Design",range:"Days 25–26",pill_bg:"rgba(216,90,48,.15)",pill_c:"#E87050",
+    days:[
+      {n:25,title:"OOP — SOLID, design patterns, OOP in JS/TS",
+       topics:"4 pillars (encapsulation, inheritance, polymorphism, abstraction) · SOLID principles with examples · Design patterns: Singleton · Factory · Observer · Strategy · Decorator · Adapter · how to implement each in TypeScript · OOP vs Functional programming tradeoffs · class vs prototype in JS",
+       tags:[{t:"OOP",bg:"rgba(216,90,48,.12)",c:"#E87050"},{t:"Design Patterns",bg:"rgba(216,90,48,.12)",c:"#E87050"}],
+       detail:{label:"Key questions",items:["Implement Singleton in TypeScript","What is the Observer pattern? Give a real-world example","What is the Open/Closed principle? Show a violation and fix","Difference between composition and inheritance","How does polymorphism work in TypeScript?"]}},
+      {n:26,title:"System Design — fundamentals + practice",
+       topics:"CAP theorem (pick 2: CP vs AP systems) · Load balancing (round robin, least connections, consistent hashing) · CDN · Horizontal vs vertical scaling · SQL vs NoSQL decision framework · Microservices vs monolith tradeoffs · Message queues (Kafka/RabbitMQ basics) · Rate limiting algorithms (token bucket, sliding window) · Design Flash Sale from scratch (45 min practice) · Design URL shortener",
+       tags:[{t:"System Design",bg:"rgba(216,90,48,.12)",c:"#E87050"},{t:"Architecture",bg:"rgba(216,90,48,.12)",c:"#E87050"}],
+       detail:{label:"Practice designing these",items:["Design your Flash Sale System (you already built it — now explain it formally)","Design a URL shortener (tiny.url)","Design a real-time notification system","Design a Rate Limiter","Design Twitter's feed (simplified)","For each: clarify → estimate scale → high-level design → deep dive"]}},
+    ]
+  },
+  {
+    label:"CS Fundamentals",range:"Day 27",pill_bg:"rgba(99,153,34,.15)",pill_c:"#80C040",
+    days:[
+      {n:27,title:"OS + Computer Networks basics",
+       topics:"OS: process vs thread · context switching · deadlock (4 conditions + prevention) · memory: stack vs heap · virtual memory + paging · mutexes + semaphores · CPU scheduling (FCFS, SJF, Round Robin) · CN: TCP vs UDP · HTTP/1.1 vs HTTP/2 vs HTTP/3 · HTTPS + TLS handshake · DNS resolution step by step · WebSockets · REST vs gRPC",
+       tags:[{t:"OS",bg:"rgba(99,153,34,.12)",c:"#80C040"},{t:"Networking",bg:"rgba(99,153,34,.12)",c:"#80C040"}],
+       detail:{label:"Key questions",items:["What is the difference between a process and a thread?","What are the 4 conditions for deadlock?","Explain the TCP 3-way handshake","What happens when you type https://google.com in detail?","What is the difference between WebSockets and HTTP polling?"]}},
+    ]
+  },
+  {
+    label:"Behavioral + HR",range:"Day 28",pill_bg:"rgba(212,83,126,.15)",pill_c:"#E070A0",
+    days:[
+      {n:28,title:"Behavioral + HR preparation",
+       topics:"60-second 'tell me about yourself' (IIT Madras → 4 internships → projects → what you want) · Why SDE not Aerospace? (craft a great answer) · Biggest failure + what you learned · Conflict in team · Leadership story (Shaastra, AEA Media, YouTube 560K views — entrepreneur angle) · Salary negotiation script · 5 questions to always ask interviewer at end",
+       tags:[{t:"HR Round",bg:"rgba(212,83,126,.12)",c:"#E070A0"},{t:"IIT Story",bg:"rgba(212,83,126,.12)",c:"#E070A0"}],
+       detail:{label:"Prepare these answers",items:["Write your 60-second intro and practice it out loud 5 times","Why SDE — link it to your actual experience (4 internships, 3 live projects)","Biggest failure: be specific, show reflection, show what changed","YouTube 560K views = you know how to build and grow products (use this)","Questions to ask: team structure, tech stack, deployment frequency, growth path"]}},
+    ]
+  },
+  {
+    label:"Mock Interviews + Final Polish",range:"Days 29–30",pill_bg:"rgba(136,135,128,.15)",pill_c:"#888",
+    days:[
+      {n:29,title:"Mock Interview Day — Full Stack Tech + DSA",
+       topics:"Morning (45 min): tech round — explain Flash Sale or HirePrep AI, get asked about any internship bullet, 1 system design question · Afternoon (60 min): 2 LeetCode mediums timed, no hints, write on paper first · Evening: review every place you stumbled — fix those gaps tonight",
+       tags:[{t:"Full Simulation",bg:"rgba(136,135,128,.1)",c:"#888"},{t:"No IDE",bg:"rgba(136,135,128,.1)",c:"#888"}],
+       detail:{label:"Simulation rules",items:["Tech round: answer as if interviewer is actually interviewing you","DSA: no looking up syntax, write full code, analyze time + space complexity","Review: make a list of every gap, study it before Day 30","Ask a friend/peer to conduct the mock — makes it more real","Time yourself strictly"]}},
+      {n:30,title:"Final day — full mock + mindset",
+       topics:"1 complete end-to-end mock (behavioral 15 min + tech 45 min + DSA 45 min) · Read your resume one final time · Prepare setup: stable internet, quiet room, VS Code ready · Review your weakest topic from the past 30 days · Sleep 8 hours tonight · You have covered everything — trust the prep.",
+       tags:[{t:"Final Mock",bg:"rgba(136,135,128,.1)",c:"#888"},{t:"Finish Line",bg:"rgba(136,135,128,.1)",c:"#888"}],
+       detail:{label:"Final checklist",items:["Resume: all URLs working, GitHub repos have READMEs","Can explain every single bullet in <2 mins","3 projects architecture diagrams ready in your head","STAR answers for 3 internships memorized","Behavioral: 60-sec intro polished. Questions for interviewer ready."]}},
+    ]
+  },
+];
+
+const KEY = 'dhruv_30day_v2';
+let checked = JSON.parse(localStorage.getItem(KEY) || '[]');
+let expanded = {};
+
+function save() { localStorage.setItem(KEY, JSON.stringify(checked)); }
+
+function updateStats() {
+  const n = checked.length;
+  document.getElementById('sn').textContent = n;
+  document.getElementById('sp').textContent = Math.round(n/30*100) + '%';
+  document.getElementById('sr').textContent = 30 - n;
+  document.getElementById('bar').style.width = (n/30*100) + '%';
+  document.getElementById('pl').textContent = n + ' / 30 days completed';
+  document.getElementById('pr').textContent = (30-n) + ' days left';
+}
+
+function resetAll() {
+  if (!confirm('Reset all progress?')) return;
+  checked = []; expanded = {};
+  localStorage.removeItem(KEY);
+  document.querySelectorAll('.day').forEach(c => c.classList.remove('done'));
+  document.querySelectorAll('.detail').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.expand-btn').forEach(b => b.textContent = '+ details');
+  updateStats();
+}
+
+const rm = document.getElementById('rm');
+
+PHASES.forEach(p => {
+  const ph = document.createElement('div');
+  ph.className = 'phase';
+  const hdr = document.createElement('div');
+  hdr.className = 'phase-hdr';
+  hdr.innerHTML = `<span class="phase-pill" style="background:${p.pill_bg};color:${p.pill_c}">${p.label}</span><span class="phase-range">${p.range}</span>`;
+  ph.appendChild(hdr);
+
+  p.days.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'day' + (checked.includes(d.n) ? ' done' : '');
+
+    const detailId = 'detail-' + d.n;
+    const expandId = 'expand-' + d.n;
+
+    card.innerHTML = `
+      <div class="chk">
+        <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+          <path d="M1 3.5L3 5.5L8 1" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="dnum">Day ${String(d.n).padStart(2,'0')}</div>
+      <div class="dbody">
+        <div class="dtitle">${d.title}</div>
+        <div class="dtopics">${d.topics}</div>
+        <div class="dtags">${d.tags.map(t=>`<span class="tag" style="background:${t.bg};color:${t.c}">${t.t}</span>`).join('')}</div>
+        <div class="expand-row">
+          <button class="expand-btn" id="${expandId}">+ details</button>
+        </div>
+        <div class="detail" id="${detailId}">
+          <div class="detail-label">${d.detail.label}</div>
+          <ul>${d.detail.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+
+    card.querySelector('.expand-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      const det = document.getElementById(detailId);
+      const btn = document.getElementById(expandId);
+      const isOpen = det.classList.contains('open');
+      det.classList.toggle('open');
+      btn.textContent = isOpen ? '+ details' : '− details';
+    });
+
+    card.addEventListener('click', e => {
+      if (e.target.classList.contains('expand-btn')) return;
+      const i = checked.indexOf(d.n);
+      if (i === -1) { checked.push(d.n); card.classList.add('done'); }
+      else { checked.splice(i,1); card.classList.remove('done'); }
+      save(); updateStats();
+    });
+
+    ph.appendChild(card);
+  });
+  rm.appendChild(ph);
+});
+
+updateStats();
+</script>
+</body>
+</html>
